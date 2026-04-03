@@ -11,6 +11,9 @@ Functional Screeps AI.
   - Repositioned `city.setGameState()` inside `loop()` in `src/main.ts` to properly hydrate the bot state and support the TickForge simulation engine.
   - Relaxed the default structure bounds in `src/lib/creepUtils.ts` (`getEnergy`), allowing builders to harvest from extensions or spawns slightly below energy capacity at lower RCL levels (e.g. RCL 2), thereby preventing builder stalling and improving extension construction.
   - Fixed a `TypeError` in `addRemote` by adding defensive initialization of `Memory.spawns` and `.sources` to avoid null-reference crashes when claiming or managing a remote.
+  - Fixed a `TypeError` in `src/managers/city.ts`'s `runEarlyGame` where it falsely assumed multiple sources always exist in a room.
+  - Fixed a `TypeError` crashing the bot upon memory wipe parsing by validating `Memory.data.lastReset` safely in `src/operations/stats.ts`.
+  - Added dynamic aliasing for `Game.spawns["Spawn1"]` in `main.ts` to seamlessly map the initial spawn to its `[roomName]0` coordinate string, matching the behavior of the original JonathanSafer runtime and bypassing engine incompatibilities.
 - **Toolchain Modernization:**
   - Upgraded **TypeScript** to `^5.4.0`.
   - Upgraded **Rollup** to `^3.29.4` and replaced outdated plugins with modern versions (`@rollup/plugin-commonjs` and `@rollup/plugin-node-resolve`).

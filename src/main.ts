@@ -39,6 +39,13 @@ profiler.enable()
 export function loop() {
     "use strict"
     profiler.wrap(function () {
+        if (Game.spawns["Spawn1"]) {
+            const roomName = Game.spawns["Spawn1"].room.name;
+            const expectedName = roomName + "0";
+            if (!Game.spawns[expectedName]) {
+                Game.spawns[expectedName] = Game.spawns["Spawn1"];
+            }
+        }
         RawMemory.setActiveSegments([])
         global.Tmp = {}
         data.updateData()

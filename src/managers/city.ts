@@ -615,7 +615,6 @@ function runEarlyGame(){
     const closestSource = spawn.pos.findClosestByPath(sources)
     const otherSource = _.find(sources, source => source.id != closestSource.id)
 
-
     sq.schedule(spawn, cN.RUNNER_NAME, false, null, 100, -7)
     sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, closestSource.id, 200, -6)
     sq.schedule(spawn, cN.RUNNER_NAME, false, null, 100, -5)
@@ -623,9 +622,11 @@ function runEarlyGame(){
     if(roomU.countMiningSpots(closestSource.pos) > 1){
         sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, closestSource.id, 300, -3)
     }
-    sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, otherSource.id, 300, -2)
-    if(roomU.countMiningSpots(otherSource.pos) > 1){
-        sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, otherSource.id, 200, -1)
+    if (otherSource) {
+        sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, otherSource.id, 300, -2)
+        if(roomU.countMiningSpots(otherSource.pos) > 1){
+            sq.schedule(spawn, cN.REMOTE_MINER_NAME, false, otherSource.id, 200, -1)
+        }
     }
     Memory.gameState = 1
 }
