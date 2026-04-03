@@ -210,7 +210,10 @@ const p = {
 
     addRemote: function(roomName, homeName){
         Memory.remotes[roomName] = 1
+        if (!Memory.spawns) Memory.spawns = {}
+        if (!Memory.spawns[homeName + "0"]) Memory.spawns[homeName + "0"] = { memory: { sources: {} } } as any
         const memory = Memory.spawns[homeName + "0"]
+        if (!memory.sources) memory.sources = {}
         const roomInfo = Cache.roomData[roomName]
         for(const sourceId in roomInfo.src){
             //return memory, sourceId

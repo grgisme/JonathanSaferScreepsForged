@@ -96,3 +96,12 @@ There are some automated roles that currently run off of flagging mechanisms. Th
 - Add new files to `profiler-prep.js` so we profile them.
 - Make sure changes pass `npm test` checks, eslint and mocha tests, to minimize sloppy bugs
 
+# Recent Changes & Upgrades
+- **Engine Parity & Bug Fixes:**
+  - Repositioned `city.setGameState()` inside `loop()` in `src/main.ts` to properly hydrate the bot state and support the TickForge simulation engine.
+  - Relaxed the default structure bounds in `src/lib/creepUtils.ts` (`getEnergy`), allowing builders to harvest from extensions or spawns slightly below energy capacity at lower RCL levels (e.g. RCL 2), thereby preventing builder stalling and improving extension construction.
+  - Fixed a `TypeError` in `addRemote` by adding defensive initialization of `Memory.spawns` and `.sources` to avoid null-reference crashes when claiming or managing a remote.
+- **Toolchain Modernization:**
+  - Upgraded **TypeScript** to `^5.4.0`.
+  - Upgraded **Rollup** to `^3.29.4` and replaced outdated plugins with modern versions (`@rollup/plugin-commonjs` and `@rollup/plugin-node-resolve`).
+  - Added robust type validation constraints in `src/screeps.d.ts` to reflect the updated Node/Screeps engine typed definition environment.

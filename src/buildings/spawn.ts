@@ -41,7 +41,7 @@ const centralSpawn = {
         }
         Game.creeps[name].memory.role = role.name
         Game.creeps[name].memory.mode = role.target
-        Game.creeps[name].memory.target = role.target as unknown as Id<RoomObject>
+        Game.creeps[name].memory.target = role.target as unknown as Id<_HasId & RoomObject>
         Game.creeps[name].memory.city = city
         Game.creeps[name].memory.needBoost = boostTier > 0 //TODO: remove
         Game.creeps[name].memory.boostTier = boostTier

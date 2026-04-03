@@ -37,7 +37,7 @@ export const cU = {
 
     getEnergy: function(creep: Creep) {
         const location = rU.getStorage(Game.spawns[creep.memory.city].room) as StructureStorage | StructureContainer | StructureSpawn
-        if(!location || (location.store.energy < 300 && location.room.controller.level > 1) || (location.structureType != STRUCTURE_SPAWN && location.store.energy < 1200)){
+        if(!location || (location.store.energy < 50 && location.room.controller.level > 1 && location.structureType == STRUCTURE_SPAWN) || (location.structureType != STRUCTURE_SPAWN && location.store.energy < 300)){
             return
         }
         if (a.withdraw(creep, location) == ERR_NOT_ENOUGH_RESOURCES) {

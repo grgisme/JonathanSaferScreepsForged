@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 
 export default {
       input: 'built/main.js',
@@ -7,8 +8,11 @@ export default {
               format: 'cjs',
               exports: 'named'
             },
-      plugins: [commonjs({
-        ignoreGlobal: false,
-        ignore: ["conditional-runtime-dependency"],
-      })]
+      plugins: [
+        resolve(),
+        commonjs({
+          ignoreGlobal: false,
+          ignore: ["conditional-runtime-dependency"],
+        })
+      ]
 };

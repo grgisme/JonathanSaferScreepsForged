@@ -149,7 +149,7 @@ declare global {
         path?: string
         repair?: Id<Structure>
         pullee?: Id<Creep>
-        target?: Id<RoomObject> // overused
+        target?: Id<_HasId & RoomObject> // overused
         mode?: number // replaces target for some creeps
         build?: Id<ConstructionSite>
         flag?: string
@@ -305,10 +305,10 @@ declare global {
         y?: number
     }
     // Only defined in screeps sim
-    var performance: Performance
-    interface Performance {
-        now: () => number
-    }
+    // var performance: Performance
+    // interface Performance {
+    //     now: () => number
+    // }
 }
 
 

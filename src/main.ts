@@ -34,7 +34,6 @@ import { cN } from "./lib/creepNames"
 // Control vs Power
 // Power =>   4 CR / power
 // Control => 50 control / CPU. 25 CR/CPU => 2 CR / control
-c.setGameState()
 
 profiler.enable()
 export function loop() {
@@ -44,6 +43,7 @@ export function loop() {
         global.Tmp = {}
         data.updateData()
         er.reset()
+        c.setGameState()
         if (Game.cpu.bucket < 50 && Game.shard.name != "shard1" && Game.time > 50){
             Log.error("Bucket too low")
             Game.notify(`Bucket hit minimum threshold at tick ${Game.time}`)
